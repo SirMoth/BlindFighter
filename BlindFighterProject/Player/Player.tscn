@@ -27,87 +27,172 @@ texture = ExtResource( 10 )
 position = Vector2( 1, -112 )
 texture = ExtResource( 11 )
 offset = Vector2( 3, -31 )
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
+
+[node name="End" type="Position2D" parent="Body/Head"]
+visible = false
+position = Vector2( 1, -67 )
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="ArmUpperR" type="Sprite" parent="Body"]
 position = Vector2( 63, -84 )
 z_index = -1
 texture = ExtResource( 5 )
 offset = Vector2( 25, 41 )
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
 
 [node name="ArmLowerR" type="Sprite" parent="Body/ArmUpperR"]
 position = Vector2( 49, 81 )
 z_index = -1
 texture = ExtResource( 1 )
 offset = Vector2( -17, 12 )
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="HandR" type="Sprite" parent="Body/ArmUpperR/ArmLowerR"]
 position = Vector2( -37, 24 )
 z_index = -1
 texture = ExtResource( 2 )
 offset = Vector2( -9, 1 )
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="Weapon" type="Sprite" parent="Body/ArmUpperR/ArmLowerR/HandR"]
 position = Vector2( -15, -1 )
 z_index = -1
 texture = ExtResource( 15 )
 offset = Vector2( 1, -74 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="End" type="Position2D" parent="Body/ArmUpperR/ArmLowerR/HandR/Weapon"]
+visible = false
+position = Vector2( 7, -174 )
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="ArmUpperL" type="Sprite" parent="Body"]
 position = Vector2( -59, -83 )
 z_index = -1
 texture = ExtResource( 8 )
 offset = Vector2( -24, 40 )
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
 
 [node name="ArmLowerL" type="Sprite" parent="Body/ArmUpperL"]
 position = Vector2( -47, 80 )
 z_index = -1
 texture = ExtResource( 12 )
 offset = Vector2( 17, 11 )
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="HandL" type="Sprite" parent="Body/ArmUpperL/ArmLowerL"]
 position = Vector2( 37, 22 )
 z_index = -1
 texture = ExtResource( 3 )
 offset = Vector2( 7, 2 )
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="Shield" type="Sprite" parent="Body/ArmUpperL/ArmLowerL/HandL"]
 position = Vector2( 11, 4 )
 z_index = -1
 texture = ExtResource( 14 )
 offset = Vector2( 2, -16 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="End" type="Position2D" parent="Body/ArmUpperL/ArmLowerL/HandL/Shield"]
+visible = false
+position = Vector2( 0, -48 )
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="LegUpperR" type="Sprite" parent="Body"]
 position = Vector2( 29, 84 )
 z_index = -1
 texture = ExtResource( 6 )
 offset = Vector2( 7, 33 )
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
 
 [node name="LegLowerR" type="Sprite" parent="Body/LegUpperR"]
 position = Vector2( 24, 77 )
 z_index = -1
 texture = ExtResource( 16 )
 offset = Vector2( -1, 56 )
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="FootR" type="Sprite" parent="Body/LegUpperR/LegLowerR"]
 position = Vector2( 1, 120 )
 z_index = -1
 texture = ExtResource( 7 )
 offset = Vector2( 11, -3 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="End" type="Position2D" parent="Body/LegUpperR/LegLowerR/FootR"]
+visible = false
+position = Vector2( 21, -14 )
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="LegUpperL" type="Sprite" parent="Body"]
 position = Vector2( -21, 85 )
 z_index = -1
 texture = ExtResource( 13 )
 offset = Vector2( -4, 40 )
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
 
 [node name="LegLowerL" type="Sprite" parent="Body/LegUpperL"]
 position = Vector2( -14, 88 )
 z_index = -1
 texture = ExtResource( 4 )
 offset = Vector2( 0, 59 )
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="FootL" type="Sprite" parent="Body/LegUpperL/LegLowerL"]
 position = Vector2( -5, 120 )
 z_index = -1
 texture = ExtResource( 9 )
 offset = Vector2( -2, -2 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="End" type="Position2D" parent="Body/LegUpperL/LegLowerL/FootL"]
+visible = false
+position = Vector2( -5, -12 )
+__meta__ = {
+"_edit_bone_": true
+}
