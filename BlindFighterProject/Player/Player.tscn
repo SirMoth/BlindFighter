@@ -603,3 +603,5 @@ anims/rest = ExtResource( 17 )
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 22 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_AnimationPlayer_animation_finished"]
