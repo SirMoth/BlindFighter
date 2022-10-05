@@ -38,6 +38,26 @@ func _get_transition(delta):
 
 			if Input.is_action_just_pressed("dodge_right"):
 				return states.dodge_right
+		
+		states.dodge_left:
+			if transition_to_return_left == true:
+				transition_to_return_left = false
+				return states.return_left
+		
+		states.dodge_right:
+			if transition_to_return_right == true:
+				transition_to_return_right = false
+				return states.return_right
+		
+		states.return_left:
+			if transition_to_idle == true:
+				transition_to_idle = false
+				return states.idle
+		
+		states.return_right:
+			if transition_to_idle == true:
+				transition_to_idle = false
+				return states.idle
 
 
 func _enter_state(new_state, old_state):
@@ -53,7 +73,6 @@ func _enter_state(new_state, old_state):
 
 		states.dodge_left:
 			parent.animation_player.play("dodge_left")
-			
 
 		states.dodge_right:
 			parent.animation_player.play("dodge_right")
@@ -74,8 +93,12 @@ func _exit_state(old_state, new_state):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
 		"dodge_left":
-			transition_to_return_left = true
+			if state == states.dodge_left:
+				transition_to_return_left = true
+			if state == states.return_right:
+				transition_to_idle = true
 		"dodge_right":
-			transition_to_return_right = true
-		"return_left", "return_right":
-			transition_to_idle = true
+			if state == states.dodge_right:
+				transition_to_return_right = true
+			if state == states.return_left:
+				transition_to_idle = true
