@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Player/Sprite/ArmLowerR.png" type="Texture" id=1]
 [ext_resource path="res://Player/Sprite/HandR.png" type="Texture" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://Player/Animation/idle.tres" type="Animation" id=18]
 [ext_resource path="res://Player/Animation/dodge_right.tres" type="Animation" id=19]
 [ext_resource path="res://Player/Animation/dodge_left.tres" type="Animation" id=20]
+[ext_resource path="res://Player/Player.gd" type="Script" id=21]
+[ext_resource path="res://Player/PlayerStateMachine.gd" type="Script" id=22]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -409,6 +411,7 @@ tracks/31/keys = {
 }
 
 [node name="Player" type="Node2D"]
+script = ExtResource( 21 )
 
 [node name="Body" type="Sprite" parent="."]
 position = Vector2( 957, 761 )
@@ -597,3 +600,6 @@ anims/dodge_left = ExtResource( 20 )
 anims/dodge_right = ExtResource( 19 )
 anims/idle = ExtResource( 18 )
 anims/rest = ExtResource( 17 )
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource( 22 )
