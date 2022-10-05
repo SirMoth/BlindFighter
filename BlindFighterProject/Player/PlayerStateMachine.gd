@@ -73,16 +73,20 @@ func _enter_state(new_state, old_state):
 
 		states.dodge_left:
 			parent.animation_player.play("dodge_left")
+			parent.move("left")
 
 		states.dodge_right:
 			parent.animation_player.play("dodge_right")
+			parent.move("right")
 
 		# Returning from the left requeres jumping to the right and vice versa
 		states.return_left:
 			parent.animation_player.play("dodge_right")
+			parent.move("start")
 
 		states.return_right:
 			parent.animation_player.play("dodge_left")
+			parent.move("start")
 
 
 # Function to place one-shot code on exiting a state
