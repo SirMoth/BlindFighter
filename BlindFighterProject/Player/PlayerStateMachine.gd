@@ -10,7 +10,7 @@ var transition_to_return_right : bool = false
 func _ready():
 	add_state("idle")
 	add_state("attack")
-	#add_state("parry")
+	add_state("parry")
 	add_state("dodge_left")
 	add_state("dodge_right")
 	add_state("return_left") # Return states for coming back after dodging
@@ -30,8 +30,8 @@ func _get_transition(delta):
 			if Input.is_action_just_pressed("attack"):
 				return states.attack
 
-			#if Input.is_action_just_pressed("parry"):
-				#return states.parry
+			if Input.is_action_just_pressed("parry"):
+				return states.parry
 
 			if Input.is_action_just_pressed("dodge_left"):
 				return states.dodge_left
@@ -40,6 +40,11 @@ func _get_transition(delta):
 				return states.dodge_right
 		
 		states.attack:
+			if transition_to_idle == true:
+				transition_to_idle = false
+				return states.idle
+		
+		states.parry:
 			if transition_to_idle == true:
 				transition_to_idle = false
 				return states.idle
@@ -73,8 +78,8 @@ func _enter_state(new_state, old_state):
 		states.attack:
 			parent.animation_player.play("attack")
 
-		#states.parry:
-			#parent.animation_player.play("parry")
+		states.parry:
+			parent.animation_player.play("parry")
 
 		states.dodge_left:
 			parent.animation_player.play("dodge_left")
@@ -103,6 +108,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
 		"attack":
 			if state == states.attack:
+				transition_to_idle = true
+		"parry":
+			if state == states.parry:
 				transition_to_idle = true
 		"dodge_left":
 			if state == states.dodge_left:
