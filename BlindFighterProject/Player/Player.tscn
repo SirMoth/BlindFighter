@@ -411,30 +411,6 @@ tracks/31/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
-tracks/32/type = "value"
-tracks/32/path = NodePath("SpriteContainer/Body/ArmUpperR/ArmLowerR/HandR/Weapon:scale")
-tracks/32/interp = 1
-tracks/32/loop_wrap = true
-tracks/32/imported = false
-tracks/32/enabled = true
-tracks/32/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/33/type = "value"
-tracks/33/path = NodePath("SpriteContainer/Body/ArmUpperR/ArmLowerR:scale")
-tracks/33/interp = 1
-tracks/33/loop_wrap = true
-tracks/33/imported = false
-tracks/33/enabled = true
-tracks/33/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 21 )
