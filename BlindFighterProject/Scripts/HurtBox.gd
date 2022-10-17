@@ -4,8 +4,11 @@ extends Area2D
 
 
 func _init():
+	# The hurtbox detects hits but does not deal them
+	monitoring = true
+	monitorable = false
+	# Collision mask/layer 2 is for hitboxes and hurtboxes
 	collision_mask = 2
-	collision_layer = 0
 
 
 func _ready():

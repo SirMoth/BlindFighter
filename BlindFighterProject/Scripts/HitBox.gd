@@ -8,8 +8,9 @@ export var damage : int = 1
 func _init():
 	# Hitbox is off when initialized
 	monitorable = false
-	# HurtBox will be collision mask 2 and collision layer 0
-	collision_mask = 0
+	# Hitbox should never detect being hit
+	monitoring = false
+	# Collision mask/layer 2 is for hitboxes and hurtboxes
 	collision_layer = 2
 
 
