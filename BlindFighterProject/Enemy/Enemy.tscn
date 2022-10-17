@@ -22,89 +22,106 @@ z_index = -10
 [node name="SpriteContainer" type="Node2D" parent="."]
 
 [node name="Hips" type="Sprite" parent="SpriteContainer"]
-position = Vector2( 991, 593 )
+position = Vector2( 992, 564 )
 texture = ExtResource( 2 )
+offset = Vector2( -1, 29 )
 
 [node name="Body" type="Sprite" parent="SpriteContainer/Hips"]
-position = Vector2( -2, -42 )
+position = Vector2( -2, -31 )
 z_index = -1
 texture = ExtResource( 1 )
-offset = Vector2( 0, -103 )
+offset = Vector2( -1, -85 )
 
 [node name="Head" type="Sprite" parent="SpriteContainer/Hips/Body"]
-position = Vector2( 1, -235 )
+position = Vector2( 0, -217 )
 z_index = 2
 texture = ExtResource( 8 )
 offset = Vector2( -1, -49 )
 
 [node name="ArmUpperR" type="Sprite" parent="SpriteContainer/Hips/Body"]
-position = Vector2( 112, -160 )
+position = Vector2( 120, -165 )
 z_index = 2
 texture = ExtResource( 3 )
-offset = Vector2( 38, 72 )
+offset = Vector2( 29, 95 )
 
 [node name="ArmLowerR" type="Sprite" parent="SpriteContainer/Hips/Body/ArmUpperR"]
-position = Vector2( 81, 148 )
+position = Vector2( 93, 168 )
 z_index = 1
 texture = ExtResource( 5 )
-offset = Vector2( -15, 86 )
+offset = Vector2( -36, 89 )
 
 [node name="HandR" type="Sprite" parent="SpriteContainer/Hips/Body/ArmUpperR/ArmLowerR"]
-position = Vector2( -27, 152 )
+position = Vector2( -48, 155 )
 z_index = 1
 texture = ExtResource( 9 )
 offset = Vector2( -5, 30 )
 
+[node name="End" type="Position2D" parent="SpriteContainer/Hips/Body/ArmUpperR/ArmLowerR/HandR"]
+visible = false
+position = Vector2( -9, 58 )
+
 [node name="ArmUpperL" type="Sprite" parent="SpriteContainer/Hips/Body"]
-position = Vector2( -108, -163 )
+position = Vector2( -120, -167 )
 z_index = 2
 texture = ExtResource( 4 )
-offset = Vector2( -37, 75 )
+offset = Vector2( -26, 97 )
 
 [node name="ArmLowerL" type="Sprite" parent="SpriteContainer/Hips/Body/ArmUpperL"]
-position = Vector2( -79, 145 )
+position = Vector2( -93, 171 )
 z_index = 1
 texture = ExtResource( 6 )
-offset = Vector2( 14, 94 )
+offset = Vector2( 39, 90 )
 
 [node name="HandL" type="Sprite" parent="SpriteContainer/Hips/Body/ArmUpperL/ArmLowerL"]
-position = Vector2( 23, 146 )
+position = Vector2( 48, 142 )
 z_index = 1
 texture = ExtResource( 7 )
 offset = Vector2( 8, 37 )
 
+[node name="End" type="Position2D" parent="SpriteContainer/Hips/Body/ArmUpperL/ArmLowerL/HandL"]
+visible = false
+position = Vector2( 12, 67 )
+
 [node name="LegUpperR" type="Sprite" parent="SpriteContainer/Hips"]
-position = Vector2( 41, 7 )
+position = Vector2( 40, 36 )
 z_index = -1
 texture = ExtResource( 12 )
 offset = Vector2( 12, 59 )
 
 [node name="LegLowerR" type="Sprite" parent="SpriteContainer/Hips/LegUpperR"]
-position = Vector2( 25, 135 )
+position = Vector2( 36, 134 )
 z_index = 1
 texture = ExtResource( 10 )
-offset = Vector2( 0, 59 )
+offset = Vector2( -11, 60 )
 
 [node name="FootR" type="Sprite" parent="SpriteContainer/Hips/LegUpperR/LegLowerR"]
-position = Vector2( -1, 112 )
+position = Vector2( -19, 101 )
 z_index = 1
 texture = ExtResource( 11 )
-offset = Vector2( 15, 1 )
+offset = Vector2( 22, 13 )
+
+[node name="End" type="Position2D" parent="SpriteContainer/Hips/LegUpperR/LegLowerR/FootR"]
+visible = false
+position = Vector2( 50, 12 )
 
 [node name="LegUpperL" type="Sprite" parent="SpriteContainer/Hips"]
-position = Vector2( -40, 11 )
+position = Vector2( -41, 40 )
 z_index = -1
 texture = ExtResource( 13 )
 offset = Vector2( -11, 56 )
 
 [node name="LegLowerL" type="Sprite" parent="SpriteContainer/Hips/LegUpperL"]
-position = Vector2( -26, 126 )
+position = Vector2( -40, 126 )
 z_index = 1
 texture = ExtResource( 15 )
-offset = Vector2( 2, 65 )
+offset = Vector2( 16, 65 )
 
 [node name="FootL" type="Sprite" parent="SpriteContainer/Hips/LegUpperL/LegLowerL"]
-position = Vector2( 3, 119 )
+position = Vector2( 22, 106 )
 z_index = 1
 texture = ExtResource( 14 )
-offset = Vector2( -15, 0 )
+offset = Vector2( -20, 13 )
+
+[node name="End" type="Position2D" parent="SpriteContainer/Hips/LegUpperL/LegLowerL/FootL"]
+visible = false
+position = Vector2( -47, 12 )
