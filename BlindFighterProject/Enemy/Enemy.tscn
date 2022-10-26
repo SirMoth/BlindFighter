@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Enemy/Sprite/Body.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Sprite/Hips.png" type="Texture" id=2]
@@ -16,6 +16,10 @@
 [ext_resource path="res://Enemy/Sprite/FootL.png" type="Texture" id=14]
 [ext_resource path="res://Enemy/Sprite/LegLowerL.png" type="Texture" id=15]
 [ext_resource path="res://Enemy/Animations/idle.tres" type="Animation" id=16]
+[ext_resource path="res://Enemy/Animations/windup_right.tres" type="Animation" id=17]
+[ext_resource path="res://Enemy/Animations/attack_right.tres" type="Animation" id=18]
+[ext_resource path="res://Enemy/Animations/windup_left.tres" type="Animation" id=19]
+[ext_resource path="res://Enemy/Animations/attack_left.tres" type="Animation" id=20]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -608,4 +612,8 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 anims/RESET = SubResource( 1 )
+anims/attack_left = ExtResource( 20 )
+anims/attack_right = ExtResource( 18 )
 anims/idle = ExtResource( 16 )
+anims/windup_left = ExtResource( 19 )
+anims/windup_right = ExtResource( 17 )
