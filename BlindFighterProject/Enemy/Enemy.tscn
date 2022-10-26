@@ -529,7 +529,7 @@ __meta__ = {
 
 [node name="End" type="Position2D" parent="SpriteContainer/Hips/Body/ArmUpperL/ArmLowerL/HandL"]
 position = Vector2( 12, 67 )
-rotation = 0.230032
+rotation = 0.230033
 __meta__ = {
 "_edit_bone_": true
 }
