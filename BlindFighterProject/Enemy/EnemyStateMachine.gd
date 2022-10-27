@@ -61,7 +61,7 @@ func _get_transition(delta):
 				transition_to_attack_center = false
 				return states.attack_center
 		
-		states.attack_right:
+		states.attack_center:
 			if transition_to_idle == true:
 				transition_to_idle = false
 				return states.idle
