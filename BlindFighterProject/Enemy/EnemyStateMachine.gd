@@ -32,6 +32,9 @@ func _get_transition(delta):
 
 			if Input.is_action_just_pressed("enemy_attack_right"):
 				return states.windup_right
+
+			if Input.is_action_just_pressed("enemy_attack_center"):
+				return states.windup_center
 		
 		states.windup_left:
 			if transition_to_attack_left == true:
