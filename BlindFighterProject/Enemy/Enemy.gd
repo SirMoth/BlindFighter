@@ -18,13 +18,16 @@ func _process(_delta):
 func play_sound_effect(sound_effect : String, location : String = "default") -> void:
 	var sound_effect_player = AudioStreamPlayer2D.new()
 	$AudioPlayerContainer.add_child(sound_effect_player)
+	sound_effect_player.volume_db += 1 # Change to a non-static variable
 	
 	if location != "default":
 		match location:
 			"left":
 				sound_effect_player.position.x = -960
+				sound_effect_player.volume_db += 3
 			"right":
 				sound_effect_player.position.x = 960
+				sound_effect_player.volume_db += 3
 			"center":
 				sound_effect_player.position.x = 0
 			_:

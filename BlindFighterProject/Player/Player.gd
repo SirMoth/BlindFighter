@@ -48,6 +48,7 @@ func move(location : String = "start") -> void:
 func play_sound_effect(sound_effect : String) -> void:
 	var sound_effect_player = AudioStreamPlayer2D.new()
 	$AudioPlayerContainer.add_child(sound_effect_player)
+	sound_effect_player.volume_db += 1 # Change to a non-static variable
 	sound_effect_player.stream = audioFiles[sound_effect]
 	sound_effect_player.play()
 	
