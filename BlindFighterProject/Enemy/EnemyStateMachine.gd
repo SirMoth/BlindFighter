@@ -108,6 +108,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
 		"windup_left":
 			if state == states.windup_left:
+				yield(get_tree().create_timer(0.2), "timeout")
 				transition_to_attack_left = true
 
 		"attack_left":
@@ -116,6 +117,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 		"windup_right":
 			if state == states.windup_right:
+				yield(get_tree().create_timer(0.2), "timeout")
 				transition_to_attack_right = true
 
 		"attack_right":
@@ -124,6 +126,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 		"windup_center":
 			if state == states.windup_center:
+				yield(get_tree().create_timer(0.2), "timeout")
 				transition_to_attack_center = true
 
 		"attack_center":

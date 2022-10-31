@@ -7,8 +7,8 @@ onready var animation_player = $AnimationPlayer
 
 
 func _ready():
-	audioFiles["windup"] = preload("res://Audio/enemy_windup.wav")
-	audioFiles["attack"] = preload("res://Audio/enemy_attack.wav")
+	audioFiles["windup"] = preload("res://Audio/Sound Effects/enemy_windup.wav")
+	audioFiles["attack"] = preload("res://Audio/Sound Effects/enemy_attack.wav")
 
 
 func _process(_delta):
