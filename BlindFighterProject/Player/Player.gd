@@ -10,9 +10,9 @@ onready var animation_player = $AnimationPlayer
 
 func _ready():
 	starting_position = $SpriteContainer.get_position()
-	audioFiles["player_attack"] = preload("res://Audio/player_attack.wav")
-	audioFiles["player_dodge"] = preload("res://Audio/player_dodge.wav")
-	audioFiles["player_return"] = preload("res://Audio/player_return.wav")
+	audioFiles["attack"] = preload("res://Audio/player_attack.wav")
+	audioFiles["dodge"] = preload("res://Audio/player_dodge.wav")
+	audioFiles["return"] = preload("res://Audio/player_return.wav")
 
 
 func _process(_delta):
@@ -22,21 +22,31 @@ func _process(_delta):
 func move(location : String = "start") -> void:
 	match location:
 		"left":
-			var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-			tween.tween_property($SpriteContainer, "position", Vector2(starting_position.x - dodge_distance, starting_position.y), animation_player.current_animation_length)
+			# Tween sprite
+			var animation_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			animation_tween.tween_property($SpriteContainer, "position", Vector2(starting_position.x - dodge_distance, starting_position.y), animation_player.current_animation_length)
+			# Tween 2D audio
+			var audio_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			audio_tween.tween_property($AudioPlayerContainer, "position", Vector2(0, $AudioPlayerContainer.get_position().y), animation_player.current_animation_length)
 		"right":
-			var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-			tween.tween_property($SpriteContainer, "position", Vector2(starting_position.x + dodge_distance, starting_position.y), animation_player.current_animation_length)
+			var animation_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			animation_tween.tween_property($SpriteContainer, "position", Vector2(starting_position.x + dodge_distance, starting_position.y), animation_player.current_animation_length)
+			
+			var audio_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			audio_tween.tween_property($AudioPlayerContainer, "position", Vector2(1920, $AudioPlayerContainer.get_position().y), animation_player.current_animation_length)
 		"start":
-			var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-			tween.tween_property($SpriteContainer, "position", starting_position, animation_player.current_animation_length)
+			var animation_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			animation_tween.tween_property($SpriteContainer, "position", starting_position, animation_player.current_animation_length)
+			
+			var audio_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			audio_tween.tween_property($AudioPlayerContainer, "position", Vector2(960, $AudioPlayerContainer.get_position().y), animation_player.current_animation_length)
 		_:
 			print("Error: Incorrect location given for move() function")
 
 
 func play_sound_effect(sound_effect : String) -> void:
 	var sound_effect_player = AudioStreamPlayer2D.new()
-	add_child($AudioPlayerContainer)
+	$AudioPlayerContainer.add_child(sound_effect_player)
 	sound_effect_player.stream = audioFiles[sound_effect]
 	sound_effect_player.play()
 	
