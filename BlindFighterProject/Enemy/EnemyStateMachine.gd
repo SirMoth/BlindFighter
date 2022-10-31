@@ -74,21 +74,27 @@ func _enter_state(new_state, old_state):
 
 		states.windup_left:
 			parent.animation_player.play("windup_left")
+			parent.play_sound_effect("windup", "left")
 
 		states.attack_left:
 			parent.animation_player.play("attack_left")
+			parent.play_sound_effect("attack", "left")
 
 		states.windup_right:
 			parent.animation_player.play("windup_right")
+			parent.play_sound_effect("windup", "right")
 
 		states.attack_right:
 			parent.animation_player.play("attack_right")
+			parent.play_sound_effect("attack", "right")
 
 		states.windup_center:
 			parent.animation_player.play("windup_center")
+			parent.play_sound_effect("windup", "center")
 
 		states.attack_center:
 			parent.animation_player.play("attack_center")
+			parent.play_sound_effect("attack", "center")
 
 
 # Function to place one-shot code on exiting a state
