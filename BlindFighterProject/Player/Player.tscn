@@ -607,6 +607,9 @@ anims/idle = ExtResource( 18 )
 anims/parry = ExtResource( 24 )
 anims/rest = ExtResource( 17 )
 
+[node name="AudioPlayerContainer" type="Node2D" parent="."]
+position = Vector2( 961, 544 )
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 22 )
 
