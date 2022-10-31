@@ -77,25 +77,31 @@ func _enter_state(new_state, old_state):
 
 		states.attack:
 			parent.animation_player.play("attack")
+			parent.play_sound_effect("attack")
 
 		states.parry:
 			parent.animation_player.play("parry")
+			parent.play_sound_effect("parry")
 
 		states.dodge_left:
 			parent.animation_player.play("dodge_left")
+			parent.play_sound_effect("dodge")
 			parent.move("left")
 
 		states.dodge_right:
 			parent.animation_player.play("dodge_right")
+			parent.play_sound_effect("dodge")
 			parent.move("right")
 
 		# Returning from the left requeres jumping to the right and vice versa
 		states.return_left:
 			parent.animation_player.play("dodge_right")
+			parent.play_sound_effect("return")
 			parent.move("start")
 
 		states.return_right:
 			parent.animation_player.play("dodge_left")
+			parent.play_sound_effect("return")
 			parent.move("start")
 
 
