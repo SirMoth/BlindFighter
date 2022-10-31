@@ -81,6 +81,7 @@ func _enter_state(new_state, old_state):
 
 		states.parry:
 			parent.animation_player.play("parry")
+			parent.play_sound_effect("parry")
 
 		states.dodge_left:
 			parent.animation_player.play("dodge_left")
