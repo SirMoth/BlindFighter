@@ -51,5 +51,5 @@ func play_sound_effect(sound_effect : String) -> void:
 	sound_effect_player.play()
 	
 	yield(sound_effect_player, "finished")
-	remove_child(sound_effect_player)
+	$AudioPlayerContainer.remove_child(sound_effect_player)
 	print("Sound Effect Player Removed")
