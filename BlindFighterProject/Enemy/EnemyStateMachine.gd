@@ -35,6 +35,17 @@ func _get_transition(delta):
 
 			if Input.is_action_just_pressed("enemy_attack_center"):
 				return states.windup_center
+			
+			if Input.is_action_just_pressed("enemy_attack_random"):
+				match (randi() % 3):
+					0:
+						return states.windup_left
+					1:
+						return states.windup_right
+					2:
+						return states.windup_center
+					_:
+						print("Random attack error: Out of scope")
 		
 		states.windup_left:
 			if transition_to_attack_left == true:

@@ -3,18 +3,17 @@ extends Node2D
 
 var starting_position : Vector2
 var dodge_distance : int = 400
+var audioFiles = {}
 
 onready var animation_player = $AnimationPlayer
-onready var audioFiles = {
-	"attack": $AudioPlayerContainer/AudioAttack,
-	"dodge": $AudioPlayerContainer/AudioDodge,
-	"return": $AudioPlayerContainer/AudioReturn,
-	"parry": $AudioPlayerContainer/AudioParry,
-}
 
 
 func _ready():
 	starting_position = $SpriteContainer.get_position()
+	audioFiles["attack"] = preload("res://Audio/Sound Effects/player_attack.wav")
+	audioFiles["dodge"] = preload("res://Audio/Sound Effects/player_dodge.wav")
+	audioFiles["return"] = preload("res://Audio/Sound Effects/player_return.wav")
+	audioFiles["parry"] = preload("res://Audio/Sound Effects/player_parry.wav")
 
 
 func _process(_delta):
@@ -47,4 +46,12 @@ func move(location : String = "start") -> void:
 
 
 func play_sound_effect(sound_effect : String) -> void:
-	audioFiles[sound_effect].play()
+	var sound_effect_player = AudioStreamPlayer2D.new()
+	$AudioPlayerContainer.add_child(sound_effect_player)
+	sound_effect_player.volume_db += 1 # Change to a non-static variable
+	sound_effect_player.stream = audioFiles[sound_effect]
+	sound_effect_player.play()
+	
+	yield(sound_effect_player, "finished")
+	$AudioPlayerContainer.remove_child(sound_effect_player)
+	print("Sound Effect Player Removed")
