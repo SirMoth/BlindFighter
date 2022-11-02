@@ -1,14 +1,11 @@
 extends Node2D
 
 
-var audioFiles = {}
-
 onready var animation_player = $AnimationPlayer
-
-
-func _ready():
-	audioFiles["windup"] = $AudioPlayerContainer/AudioWindup
-	audioFiles["attack"] = $AudioPlayerContainer/AudioAttack
+onready var audioFiles = {
+	"windup": $AudioPlayerContainer/AudioWindup,
+	"attack": $AudioPlayerContainer/AudioAttack,
+}
 
 
 func _process(_delta):

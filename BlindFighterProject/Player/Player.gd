@@ -3,17 +3,18 @@ extends Node2D
 
 var starting_position : Vector2
 var dodge_distance : int = 400
-var audioFiles = {}
 
 onready var animation_player = $AnimationPlayer
+onready var audioFiles = {
+	"attack": $AudioPlayerContainer/AudioAttack,
+	"dodge": $AudioPlayerContainer/AudioDodge,
+	"return": $AudioPlayerContainer/AudioReturn,
+	"parry": $AudioPlayerContainer/AudioParry,
+}
 
 
 func _ready():
 	starting_position = $SpriteContainer.get_position()
-	audioFiles["attack"] = $AudioPlayerContainer/AudioAttack
-	audioFiles["dodge"] = $AudioPlayerContainer/AudioDodge
-	audioFiles["return"] = $AudioPlayerContainer/AudioReturn
-	audioFiles["parry"] = $AudioPlayerContainer/AudioParry
 
 
 func _process(_delta):
