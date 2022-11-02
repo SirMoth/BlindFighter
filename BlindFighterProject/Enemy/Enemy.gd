@@ -7,8 +7,8 @@ onready var animation_player = $AnimationPlayer
 
 
 func _ready():
-	audioFiles["windup"] = preload("res://Audio/Sound Effects/enemy_windup.wav")
-	audioFiles["attack"] = preload("res://Audio/Sound Effects/enemy_attack.wav")
+	audioFiles["windup"] = $AudioPlayerContainer/AudioWindup
+	audioFiles["attack"] = $AudioPlayerContainer/AudioAttack
 
 
 func _process(_delta):
@@ -16,26 +16,22 @@ func _process(_delta):
 
 
 func play_sound_effect(sound_effect : String, location : String = "default") -> void:
-	var sound_effect_player = AudioStreamPlayer2D.new()
-	$AudioPlayerContainer.add_child(sound_effect_player)
-	sound_effect_player.volume_db += 1 # Change to a non-static variable
-	
 	if location != "default":
 		match location:
 			"left":
-				sound_effect_player.position.x = -960
-				sound_effect_player.volume_db += 3
+				audioFiles[sound_effect].position.x = -960
+				audioFiles[sound_effect].volume_db += 3
 			"right":
-				sound_effect_player.position.x = 960
-				sound_effect_player.volume_db += 3
+				audioFiles[sound_effect].position.x = 960
+				audioFiles[sound_effect].volume_db += 3
 			"center":
-				sound_effect_player.position.x = 0
+				audioFiles[sound_effect].position.x = 0
 			_:
 				print("Location Error")
 	
-	sound_effect_player.stream = audioFiles[sound_effect]
-	sound_effect_player.play()
+	audioFiles[sound_effect].play()
 	
-	yield(sound_effect_player, "finished")
-	$AudioPlayerContainer.remove_child(sound_effect_player)
-	print("Sound Effect Player Removed")
+	if location != "default":
+		yield(audioFiles[sound_effect], "finished")
+		audioFiles[sound_effect].position.x = 0
+		audioFiles[sound_effect].volume_db -= 3
