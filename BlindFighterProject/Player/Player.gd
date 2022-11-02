@@ -20,6 +20,11 @@ func _process(_delta):
 	pass
 
 
+# Placeholder take_damage function
+func take_damage(damage):
+	print("You took ", damage, " damage.")
+
+
 func move(location : String = "start") -> void:
 	match location:
 		"left":
