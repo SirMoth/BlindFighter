@@ -10,10 +10,10 @@ onready var animation_player = $AnimationPlayer
 
 func _ready():
 	starting_position = $SpriteContainer.get_position()
-	audioFiles["attack"] = preload("res://Audio/Sound Effects/player_attack.wav")
-	audioFiles["dodge"] = preload("res://Audio/Sound Effects/player_dodge.wav")
-	audioFiles["return"] = preload("res://Audio/Sound Effects/player_return.wav")
-	audioFiles["parry"] = preload("res://Audio/Sound Effects/player_parry.wav")
+	audioFiles["attack"] = $AudioPlayerContainer/AudioAttack
+	audioFiles["dodge"] = $AudioPlayerContainer/AudioDodge
+	audioFiles["return"] = $AudioPlayerContainer/AudioReturn
+	audioFiles["parry"] = $AudioPlayerContainer/AudioParry
 
 
 func _process(_delta):
@@ -46,12 +46,4 @@ func move(location : String = "start") -> void:
 
 
 func play_sound_effect(sound_effect : String) -> void:
-	var sound_effect_player = AudioStreamPlayer2D.new()
-	$AudioPlayerContainer.add_child(sound_effect_player)
-	sound_effect_player.volume_db += 1 # Change to a non-static variable
-	sound_effect_player.stream = audioFiles[sound_effect]
-	sound_effect_player.play()
-	
-	yield(sound_effect_player, "finished")
-	$AudioPlayerContainer.remove_child(sound_effect_player)
-	print("Sound Effect Player Removed")
+	audioFiles[sound_effect].play()
