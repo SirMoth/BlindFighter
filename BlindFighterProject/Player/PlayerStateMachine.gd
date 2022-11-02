@@ -1,4 +1,4 @@
-extends "res://Scripts/StateMachine.gd"
+extends StateMachine
 
 
 # Variables to tell if the state should transition to another specific state
