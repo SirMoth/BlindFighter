@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Player/Sprite/ArmLowerR.png" type="Texture" id=1]
 [ext_resource path="res://Player/Sprite/HandR.png" type="Texture" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://Audio/Sound Effects/player_dodge.wav" type="AudioStream" id=26]
 [ext_resource path="res://Audio/Sound Effects/player_return.wav" type="AudioStream" id=27]
 [ext_resource path="res://Audio/Sound Effects/player_attack.wav" type="AudioStream" id=28]
+[ext_resource path="res://Player/PlayerHurtBox.gd" type="Script" id=29]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -634,12 +635,11 @@ stream = ExtResource( 25 )
 script = ExtResource( 22 )
 
 [node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource( 29 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-modulate = Color( 0, 1, 0.345098, 0.705882 )
+self_modulate = Color( 0, 1, 0, 0.705882 )
 position = Vector2( 960, 816 )
 shape = SubResource( 2 )
-
-[node name="HurtBoxStateMachine" type="Node" parent="HurtBox"]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_AnimationPlayer_animation_finished"]
