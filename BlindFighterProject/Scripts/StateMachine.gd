@@ -6,7 +6,6 @@ var state = null setget set_state
 var previous_state = null
 var states = {}
 
-
 onready var parent = get_parent()
 
 
