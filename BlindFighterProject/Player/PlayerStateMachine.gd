@@ -1,4 +1,4 @@
-extends "res://Scripts/StateMachine.gd"
+extends StateMachine
 
 
 # Variables to tell if the state should transition to another specific state
@@ -63,46 +63,65 @@ func _get_transition(delta):
 			if transition_to_idle == true:
 				transition_to_idle = false
 				return states.idle
+				
+			if Input.is_action_just_pressed("attack"):
+				return states.attack
+
+			if Input.is_action_just_pressed("parry"):
+				return states.parry
 		
 		states.return_right:
 			if transition_to_idle == true:
 				transition_to_idle = false
 				return states.idle
+				
+			if Input.is_action_just_pressed("attack"):
+				return states.attack
+
+			if Input.is_action_just_pressed("parry"):
+				return states.parry
 
 
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.idle:
 			parent.animation_player.play("idle")
+			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["center"], $"%HurtBox".color["idle"])
 
 		states.attack:
 			parent.animation_player.play("attack")
 			parent.play_sound_effect("attack")
+			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["center"], $"%HurtBox".color["idle"])
 
 		states.parry:
 			parent.animation_player.play("parry")
 			parent.play_sound_effect("parry")
+			$"%HurtBox".set_status($"%HurtBox".Condition.PARRY, $"%HurtBox".location["center"], $"%HurtBox".color["parry"])
 
 		states.dodge_left:
 			parent.animation_player.play("dodge_left")
 			parent.play_sound_effect("dodge")
 			parent.move("left")
+			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["left"], $"%HurtBox".color["idle"])
 
 		states.dodge_right:
 			parent.animation_player.play("dodge_right")
 			parent.play_sound_effect("dodge")
 			parent.move("right")
+			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["right"], $"%HurtBox".color["idle"])
 
 		# Returning from the left requeres jumping to the right and vice versa
 		states.return_left:
 			parent.animation_player.play("dodge_right")
 			parent.play_sound_effect("return")
 			parent.move("start")
+			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["left"], $"%HurtBox".color["idle"])
 
 		states.return_right:
 			parent.animation_player.play("dodge_left")
 			parent.play_sound_effect("return")
 			parent.move("start")
+			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["right"], $"%HurtBox".color["idle"])
 
 
 # Function to place one-shot code on exiting a state

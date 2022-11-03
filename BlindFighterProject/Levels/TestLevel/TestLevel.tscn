@@ -22,3 +22,4 @@ __meta__ = {
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -6.0
+autoplay = true

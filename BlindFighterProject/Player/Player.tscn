@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Player/Sprite/ArmLowerR.png" type="Texture" id=1]
 [ext_resource path="res://Player/Sprite/HandR.png" type="Texture" id=2]
@@ -24,6 +24,11 @@
 [ext_resource path="res://Player/PlayerStateMachine.gd" type="Script" id=22]
 [ext_resource path="res://Player/Animation/attack.tres" type="Animation" id=23]
 [ext_resource path="res://Player/Animation/parry.tres" type="Animation" id=24]
+[ext_resource path="res://Audio/Sound Effects/player_parry.wav" type="AudioStream" id=25]
+[ext_resource path="res://Audio/Sound Effects/player_dodge.wav" type="AudioStream" id=26]
+[ext_resource path="res://Audio/Sound Effects/player_return.wav" type="AudioStream" id=27]
+[ext_resource path="res://Audio/Sound Effects/player_attack.wav" type="AudioStream" id=28]
+[ext_resource path="res://Player/PlayerHurtBox.gd" type="Script" id=29]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -412,6 +417,9 @@ tracks/31/keys = {
 "values": [ 0.0 ]
 }
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 128, 264 )
+
 [node name="Player" type="Node2D"]
 script = ExtResource( 21 )
 
@@ -611,7 +619,28 @@ anims/rest = ExtResource( 17 )
 visible = false
 position = Vector2( 960, 540 )
 
+[node name="AudioAttack" type="AudioStreamPlayer2D" parent="AudioPlayerContainer"]
+stream = ExtResource( 28 )
+
+[node name="AudioDodge" type="AudioStreamPlayer2D" parent="AudioPlayerContainer"]
+stream = ExtResource( 26 )
+
+[node name="AudioReturn" type="AudioStreamPlayer2D" parent="AudioPlayerContainer"]
+stream = ExtResource( 27 )
+
+[node name="AudioParry" type="AudioStreamPlayer2D" parent="AudioPlayerContainer"]
+stream = ExtResource( 25 )
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 22 )
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 29 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+self_modulate = Color( 0, 1, 0, 0.705882 )
+position = Vector2( 960, 816 )
+shape = SubResource( 2 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_AnimationPlayer_animation_finished"]

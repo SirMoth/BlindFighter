@@ -15,6 +15,11 @@ func _process(_delta):
 	pass
 
 
+# Placeholder take_damage function
+func take_damage(damage):
+	print("Enemy took ", damage, " damage.")
+
+
 func play_sound_effect(sound_effect : String, location : String = "default") -> void:
 	var sound_effect_player = AudioStreamPlayer2D.new()
 	$AudioPlayerContainer.add_child(sound_effect_player)
