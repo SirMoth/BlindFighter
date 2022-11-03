@@ -653,6 +653,7 @@ script = ExtResource( 27 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 self_modulate = Color( 1, 0, 0, 0.7 )
 position = Vector2( 960, 778 )
+z_index = 20
 shape = SubResource( 2 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_AnimationPlayer_animation_finished"]
