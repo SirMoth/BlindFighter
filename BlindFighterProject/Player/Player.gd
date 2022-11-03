@@ -14,6 +14,7 @@ func _ready():
 	audioFiles["dodge"] = preload("res://Audio/Sound Effects/player_dodge.wav")
 	audioFiles["return"] = preload("res://Audio/Sound Effects/player_return.wav")
 	audioFiles["parry"] = preload("res://Audio/Sound Effects/player_parry.wav")
+	audioFiles["damaged"] = preload("res://Audio/Sound Effects/player_damaged.wav")
 
 
 func _process(_delta):
@@ -22,6 +23,7 @@ func _process(_delta):
 
 # Placeholder take_damage function
 func take_damage(damage):
+	play_sound_effect("damaged")
 	print("You took ", damage, " damage.")
 
 
