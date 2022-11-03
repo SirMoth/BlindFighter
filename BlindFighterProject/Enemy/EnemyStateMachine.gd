@@ -90,6 +90,8 @@ func _enter_state(new_state, old_state):
 		states.attack_left:
 			parent.animation_player.play("attack_left")
 			parent.play_sound_effect("attack", "left")
+			$"%HitBox".set_location($"%HitBox".Location.LEFT_CENTER)
+			$"%HitBox".activate(0.5, 1, 0)
 
 		states.windup_right:
 			parent.animation_player.play("windup_right")
@@ -98,6 +100,8 @@ func _enter_state(new_state, old_state):
 		states.attack_right:
 			parent.animation_player.play("attack_right")
 			parent.play_sound_effect("attack", "right")
+			$"%HitBox".set_location($"%HitBox".Location.RIGHT_CENTER)
+			$"%HitBox".activate(0.5, 1, 0)
 
 		states.windup_center:
 			parent.animation_player.play("windup_center")
@@ -106,6 +110,8 @@ func _enter_state(new_state, old_state):
 		states.attack_center:
 			parent.animation_player.play("attack_center")
 			parent.play_sound_effect("attack", "center")
+			$"%HitBox".set_location($"%HitBox".Location.ALL)
+			$"%HitBox".activate(0.5, 1, 0)
 
 
 # Function to place one-shot code on exiting a state

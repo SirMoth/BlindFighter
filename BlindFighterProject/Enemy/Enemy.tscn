@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Enemy/Sprite/Body.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Sprite/Hips.png" type="Texture" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Enemy/Animations/attack_center.tres" type="Animation" id=24]
 [ext_resource path="res://Audio/Sound Effects/enemy_attack.wav" type="AudioStream" id=25]
 [ext_resource path="res://Audio/Sound Effects/enemy_windup.wav" type="AudioStream" id=26]
+[ext_resource path="res://Enemy/EnemyHitBox.gd" type="Script" id=27]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -438,6 +439,9 @@ tracks/33/keys = {
 "values": [ -16.1964 ]
 }
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 64, 10 )
+
 [node name="Enemy" type="Node2D"]
 z_index = -10
 script = ExtResource( 21 )
@@ -641,5 +645,15 @@ volume_db = 2.0
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 22 )
+
+[node name="HitBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 27 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+self_modulate = Color( 1, 0, 0, 0.7 )
+position = Vector2( 960, 778 )
+z_index = 20
+shape = SubResource( 2 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_AnimationPlayer_animation_finished"]

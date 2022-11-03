@@ -3,7 +3,6 @@ extends HurtBox
 
 onready var collision = $CollisionShape2D
 
-
 enum Condition {IDLE, PARRY, INVINCIBLE}
 var current_condition
 var location = {
@@ -17,7 +16,6 @@ var color = {
 	"invincible": Color(0, 0, 0, 0.7),
 	"hit": Color(1, 0, 0, 0.7),
 }
-
 
 signal parried
 
