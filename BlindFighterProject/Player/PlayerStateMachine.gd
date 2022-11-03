@@ -63,11 +63,23 @@ func _get_transition(delta):
 			if transition_to_idle == true:
 				transition_to_idle = false
 				return states.idle
+				
+			if Input.is_action_just_pressed("attack"):
+				return states.attack
+
+			if Input.is_action_just_pressed("parry"):
+				return states.parry
 		
 		states.return_right:
 			if transition_to_idle == true:
 				transition_to_idle = false
 				return states.idle
+				
+			if Input.is_action_just_pressed("attack"):
+				return states.attack
+
+			if Input.is_action_just_pressed("parry"):
+				return states.parry
 
 
 func _enter_state(new_state, old_state):
