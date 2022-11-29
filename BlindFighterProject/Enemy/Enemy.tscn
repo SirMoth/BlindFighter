@@ -665,7 +665,7 @@ unique_name_in_owner = true
 script = ExtResource( 28 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2( 989, 440 )
+position = Vector2( 989, 408 )
 z_index = 1
 shape = SubResource( 3 )
 
