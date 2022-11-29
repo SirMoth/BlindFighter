@@ -43,4 +43,3 @@ func play_sound_effect(sound_effect : String, location : String = "default") -> 
 	
 	yield(sound_effect_player, "finished")
 	$AudioPlayerContainer.remove_child(sound_effect_player)
-	print("Sound Effect Player Removed")
