@@ -92,6 +92,7 @@ func _enter_state(new_state, old_state):
 			parent.animation_player.play("attack")
 			parent.play_sound_effect("attack")
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["center"], $"%HurtBox".color["idle"])
+			$"%HitBox".activate(0.5, 1, 0.1)
 
 		states.parry:
 			parent.animation_player.play("parry")
