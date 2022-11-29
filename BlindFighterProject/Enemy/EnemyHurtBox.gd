@@ -1,4 +1,4 @@
-extends Area2D
+extends HurtBox
 
 
 onready var collision = $CollisionShape2D
