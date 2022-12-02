@@ -11,6 +11,7 @@ onready var animation_player = $AnimationPlayer
 func _ready():
 	starting_position = $SpriteContainer.get_position()
 	audioFiles["attack"] = preload("res://Audio/Sound Effects/player_attack.wav")
+	audioFiles["hit"] = preload("res://Audio/Sound Effects/player_hit.wav")
 	audioFiles["dodge"] = preload("res://Audio/Sound Effects/player_dodge.wav")
 	audioFiles["return"] = preload("res://Audio/Sound Effects/player_return.wav")
 	audioFiles["parry"] = preload("res://Audio/Sound Effects/player_parry.wav")

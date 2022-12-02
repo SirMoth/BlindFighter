@@ -85,36 +85,36 @@ func _enter_state(new_state, old_state):
 
 		states.windup_left:
 			parent.animation_player.play("windup_left")
-			parent.play_sound_effect("windup", "left")
+			parent.play_sound_effect("windup_side", "left")
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 
 		states.attack_left:
 			parent.animation_player.play("attack_left")
-			parent.play_sound_effect("attack", "left")
+			parent.play_sound_effect("attack2", "left")
 			$"%HitBox".set_location($"%HitBox".Location.LEFT_CENTER)
 			$"%HitBox".activate(0.5, 1, 0)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 
 		states.windup_right:
 			parent.animation_player.play("windup_right")
-			parent.play_sound_effect("windup", "right")
+			parent.play_sound_effect("windup_side", "right")
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 
 		states.attack_right:
 			parent.animation_player.play("attack_right")
-			parent.play_sound_effect("attack", "right")
+			parent.play_sound_effect("attack2", "right")
 			$"%HitBox".set_location($"%HitBox".Location.RIGHT_CENTER)
 			$"%HitBox".activate(0.5, 1, 0)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 
 		states.windup_center:
 			parent.animation_player.play("windup_center")
-			parent.play_sound_effect("windup", "center")
+			parent.play_sound_effect("windup_center", "center")
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 
 		states.attack_center:
 			parent.animation_player.play("attack_center")
-			parent.play_sound_effect("attack", "center")
+			parent.play_sound_effect("attack2", "center")
 			$"%HitBox".set_location($"%HitBox".Location.ALL)
 			$"%HitBox".activate(0.5, 1, 0)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
@@ -129,7 +129,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
 		"windup_left":
 			if state == states.windup_left:
-				yield(get_tree().create_timer(0.2), "timeout")
+				yield(get_tree().create_timer(0.25), "timeout")
 				transition_to_attack_left = true
 
 		"attack_left":
@@ -139,7 +139,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 		"windup_right":
 			if state == states.windup_right:
-				yield(get_tree().create_timer(0.2), "timeout")
+				yield(get_tree().create_timer(0.25), "timeout")
 				transition_to_attack_right = true
 
 		"attack_right":
@@ -149,7 +149,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 		"windup_center":
 			if state == states.windup_center:
-				yield(get_tree().create_timer(0.2), "timeout")
+				yield(get_tree().create_timer(0.25), "timeout")
 				transition_to_attack_center = true
 
 		"attack_center":

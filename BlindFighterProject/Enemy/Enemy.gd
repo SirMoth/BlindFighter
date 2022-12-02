@@ -8,7 +8,11 @@ onready var animation_player = $AnimationPlayer
 
 func _ready():
 	audioFiles["windup"] = preload("res://Audio/Sound Effects/enemy_windup.wav")
+	audioFiles["windup_side"] = preload("res://Audio/Sound Effects/enemy_windup_side.wav")
+	audioFiles["windup_center"] = preload("res://Audio/Sound Effects/enemy_windup_center.wav")
 	audioFiles["attack"] = preload("res://Audio/Sound Effects/enemy_attack.wav")
+	audioFiles["attack2"] = preload("res://Audio/Sound Effects/enemy_attack2.wav")
+	audioFiles["player_hit"] = preload("res://Audio/Sound Effects/player_hit.wav")
 
 
 func _process(_delta):
@@ -18,6 +22,7 @@ func _process(_delta):
 # Placeholder take_damage function
 func take_damage(damage):
 	print("Enemy took ", damage, " damage.")
+	play_sound_effect("player_hit")
 
 
 func play_sound_effect(sound_effect : String, location : String = "default") -> void:
