@@ -8,6 +8,10 @@ var transition_to_attack_right : bool = false
 var transition_to_attack_center : bool = false
 
 
+#Signal the AI uses to determine attack timings
+signal attack_finished
+
+
 func _ready():
 	add_state("idle")
 	add_state("windup_left")
@@ -123,9 +127,15 @@ func _enter_state(new_state, old_state):
 
 # Function to place one-shot code on exiting a state
 func _exit_state(old_state, new_state):
-	pass
+	match old_state:
+		"attack_left":
+			emit_signal("attack_finished")
 
+		"attack_right":
+			emit_signal("attack_finished")
 
+		"attack_center":
+			emit_signal("attack_finished")
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

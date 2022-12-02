@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Enemy/Sprite/Body.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Sprite/Hips.png" type="Texture" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://Enemy/EnemyStateMachine.gd" type="Script" id=22]
 [ext_resource path="res://Enemy/Animations/windup_center.tres" type="Animation" id=23]
 [ext_resource path="res://Enemy/Animations/attack_center.tres" type="Animation" id=24]
+[ext_resource path="res://Enemy/EnemyAI.gd" type="Script" id=25]
 [ext_resource path="res://Enemy/EnemyHitBox.gd" type="Script" id=27]
 [ext_resource path="res://Enemy/EnemyHurtBox.gd" type="Script" id=28]
 
@@ -639,6 +640,9 @@ position = Vector2( 960, 540 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 22 )
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource( 25 )
 
 [node name="HitBox" type="Area2D" parent="."]
 unique_name_in_owner = true
