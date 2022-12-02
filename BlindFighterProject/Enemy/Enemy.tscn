@@ -639,9 +639,11 @@ visible = false
 position = Vector2( 960, 540 )
 
 [node name="StateMachine" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource( 22 )
 
 [node name="AI" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource( 25 )
 
 [node name="HitBox" type="Area2D" parent="."]
