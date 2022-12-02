@@ -3,8 +3,11 @@ extends StateMachine
 
 # Variables to tell if the state should transition to another specific state
 var transition_to_idle : bool = false
+var transition_to_windup_left : bool = false
 var transition_to_attack_left : bool = false
+var transition_to_windup_right : bool = false
 var transition_to_attack_right : bool = false
+var transition_to_windup_center : bool = false
 var transition_to_attack_center : bool = false
 
 
@@ -31,25 +34,17 @@ func _state_logic(delta):
 func _get_transition(delta):
 	match state:
 		states.idle:
-			if Input.is_action_just_pressed("enemy_attack_left"):
+			if transition_to_windup_left == true:
+				transition_to_windup_left = false
 				return states.windup_left
 
-			if Input.is_action_just_pressed("enemy_attack_right"):
+			if transition_to_windup_right == true:
+				transition_to_windup_right = false
 				return states.windup_right
 
-			if Input.is_action_just_pressed("enemy_attack_center"):
+			if transition_to_windup_center == true:
+				transition_to_windup_center = false
 				return states.windup_center
-			
-			if Input.is_action_just_pressed("enemy_attack_random"):
-				match (randi() % 3):
-					0:
-						return states.windup_left
-					1:
-						return states.windup_right
-					2:
-						return states.windup_center
-					_:
-						print("Random attack error: Out of scope")
 		
 		states.windup_left:
 			if transition_to_attack_left == true:
@@ -127,15 +122,7 @@ func _enter_state(new_state, old_state):
 
 # Function to place one-shot code on exiting a state
 func _exit_state(old_state, new_state):
-	match old_state:
-		"attack_left":
-			emit_signal("attack_finished")
-
-		"attack_right":
-			emit_signal("attack_finished")
-
-		"attack_center":
-			emit_signal("attack_finished")
+	pass
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
@@ -148,6 +135,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"attack_left":
 			if state == states.attack_left:
 				transition_to_idle = true
+				emit_signal("attack_finished")
 
 		"windup_right":
 			if state == states.windup_right:
@@ -157,6 +145,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"attack_right":
 			if state == states.attack_right:
 				transition_to_idle = true
+				emit_signal("attack_finished")
 
 		"windup_center":
 			if state == states.windup_center:
@@ -166,3 +155,14 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"attack_center":
 			if state == states.attack_center:
 				transition_to_idle = true
+				emit_signal("attack_finished")
+
+
+func _on_AI_attack_left():
+	transition_to_windup_left = true
+
+func _on_AI_attack_right():
+	transition_to_windup_right = true
+
+func _on_AI_attack_center():
+	transition_to_windup_center = true

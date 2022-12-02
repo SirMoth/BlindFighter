@@ -666,3 +666,7 @@ z_index = 1
 shape = SubResource( 3 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="attack_finished" from="StateMachine" to="AI" method="_on_StateMachine_attack_finished"]
+[connection signal="attack_center" from="AI" to="StateMachine" method="_on_AI_attack_center"]
+[connection signal="attack_left" from="AI" to="StateMachine" method="_on_AI_attack_left"]
+[connection signal="attack_right" from="AI" to="StateMachine" method="_on_AI_attack_right"]
