@@ -13,7 +13,9 @@ func _ready():
 	audioFiles["attack"] = preload("res://Audio/Sound Effects/player_attack.wav")
 	audioFiles["hit"] = preload("res://Audio/Sound Effects/player_hit.wav")
 	audioFiles["dodge"] = preload("res://Audio/Sound Effects/player_dodge.wav")
+	audioFiles["dodge_voice"] = preload("res://Audio/Sound Effects/player_dodge_voice.wav")
 	audioFiles["return"] = preload("res://Audio/Sound Effects/player_return.wav")
+	audioFiles["return_voice"] = preload("res://Audio/Sound Effects/player_return_voice.wav")
 	audioFiles["parry"] = preload("res://Audio/Sound Effects/player_parry.wav")
 	audioFiles["damaged"] = preload("res://Audio/Sound Effects/player_damaged.wav")
 
