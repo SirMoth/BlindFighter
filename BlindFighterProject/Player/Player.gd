@@ -1,15 +1,20 @@
 extends Node2D
 
 
+var starting_health : int = 4
+var current_health : int = starting_health
 var starting_position : Vector2
 var dodge_distance : int = 400
 var audioFiles = {}
 
 onready var animation_player = $AnimationPlayer
 
+signal player_health_changed(new_health)
+
 
 func _ready():
 	starting_position = $SpriteContainer.get_position()
+	emit_signal("player_health_changed", starting_health)
 	audioFiles["attack"] = preload("res://Audio/Sound Effects/player_attack.wav")
 	audioFiles["hit"] = preload("res://Audio/Sound Effects/player_hit.wav")
 	audioFiles["dodge"] = preload("res://Audio/Sound Effects/player_dodge.wav")
@@ -28,6 +33,8 @@ func _process(_delta):
 func take_damage(damage):
 	play_sound_effect("damaged")
 	print("You took ", damage, " damage.")
+	current_health -= damage
+	emit_signal("player_health_changed", current_health)
 
 
 func move(location : String = "start") -> void:

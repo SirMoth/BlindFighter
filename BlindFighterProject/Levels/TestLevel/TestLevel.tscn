@@ -27,3 +27,5 @@ volume_db = -10.0
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
+
+[connection signal="player_health_changed" from="Player" to="HUD" method="_on_Player_player_health_changed"]
