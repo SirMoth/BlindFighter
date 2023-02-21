@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Levels/Background.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Audio/Music/8-Bit Surf Slow.mp3" type="AudioStream" id=4]
+[ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/InGameMenu.tscn" type="PackedScene" id=6]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -22,4 +24,14 @@ __meta__ = {
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -10.0
-autoplay = true
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="InGameMenu" parent="." instance=ExtResource( 6 )]
+
+[connection signal="player_health_changed" from="Player" to="HUD" method="_on_Player_player_health_changed"]
+[connection signal="player_health_changed" from="Player" to="InGameMenu" method="_on_Player_player_health_changed"]
+[connection signal="enemy_health_changed" from="Enemy" to="HUD" method="_on_Enemy_enemy_health_changed"]
+[connection signal="enemy_health_changed" from="Enemy" to="InGameMenu" method="_on_Enemy_enemy_health_changed"]

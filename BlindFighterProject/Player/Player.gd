@@ -1,18 +1,26 @@
 extends Node2D
 
 
+var starting_health : int = 4
+var current_health : int = starting_health
 var starting_position : Vector2
 var dodge_distance : int = 400
 var audioFiles = {}
 
 onready var animation_player = $AnimationPlayer
 
+signal player_health_changed(new_health)
+
 
 func _ready():
 	starting_position = $SpriteContainer.get_position()
+	emit_signal("player_health_changed", starting_health)
 	audioFiles["attack"] = preload("res://Audio/Sound Effects/player_attack.wav")
+	audioFiles["hit"] = preload("res://Audio/Sound Effects/player_hit.wav")
 	audioFiles["dodge"] = preload("res://Audio/Sound Effects/player_dodge.wav")
+	audioFiles["dodge_voice"] = preload("res://Audio/Sound Effects/player_dodge_voice.wav")
 	audioFiles["return"] = preload("res://Audio/Sound Effects/player_return.wav")
+	audioFiles["return_voice"] = preload("res://Audio/Sound Effects/player_return_voice.wav")
 	audioFiles["parry"] = preload("res://Audio/Sound Effects/player_parry.wav")
 	audioFiles["damaged"] = preload("res://Audio/Sound Effects/player_damaged.wav")
 
@@ -25,6 +33,8 @@ func _process(_delta):
 func take_damage(damage):
 	play_sound_effect("damaged")
 	print("You took ", damage, " damage.")
+	current_health -= damage
+	emit_signal("player_health_changed", current_health)
 
 
 func move(location : String = "start") -> void:
@@ -61,4 +71,3 @@ func play_sound_effect(sound_effect : String) -> void:
 	
 	yield(sound_effect_player, "finished")
 	$AudioPlayerContainer.remove_child(sound_effect_player)
-	print("Sound Effect Player Removed")

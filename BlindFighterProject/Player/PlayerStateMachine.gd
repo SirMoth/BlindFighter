@@ -92,6 +92,7 @@ func _enter_state(new_state, old_state):
 			parent.animation_player.play("attack")
 			parent.play_sound_effect("attack")
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["center"], $"%HurtBox".color["idle"])
+			$"%HitBox".activate(0.5, 1, 0.08)
 
 		states.parry:
 			parent.animation_player.play("parry")
@@ -101,12 +102,14 @@ func _enter_state(new_state, old_state):
 		states.dodge_left:
 			parent.animation_player.play("dodge_left")
 			parent.play_sound_effect("dodge")
+			parent.play_sound_effect("dodge_voice")
 			parent.move("left")
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["left"], $"%HurtBox".color["idle"])
 
 		states.dodge_right:
 			parent.animation_player.play("dodge_right")
 			parent.play_sound_effect("dodge")
+			parent.play_sound_effect("dodge_voice")
 			parent.move("right")
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["right"], $"%HurtBox".color["idle"])
 
@@ -114,12 +117,14 @@ func _enter_state(new_state, old_state):
 		states.return_left:
 			parent.animation_player.play("dodge_right")
 			parent.play_sound_effect("return")
+			parent.play_sound_effect("return_voice")
 			parent.move("start")
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["left"], $"%HurtBox".color["idle"])
 
 		states.return_right:
 			parent.animation_player.play("dodge_left")
 			parent.play_sound_effect("return")
+			parent.play_sound_effect("return_voice")
 			parent.move("start")
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["right"], $"%HurtBox".color["idle"])
 
