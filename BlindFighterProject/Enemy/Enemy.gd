@@ -26,7 +26,6 @@ func _process(_delta):
 
 # Placeholder take_damage function
 func take_damage(damage):
-	print("Enemy took ", damage, " damage.")
 	play_sound_effect("player_hit")
 	current_health -= damage
 	emit_signal("enemy_health_changed", current_health)
