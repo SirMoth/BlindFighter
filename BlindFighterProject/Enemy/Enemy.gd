@@ -1,12 +1,17 @@
 extends Node2D
 
 
+var starting_health : int = 15
+var current_health : int = starting_health
 var audioFiles = {}
 
 onready var animation_player = $AnimationPlayer
 
+signal enemy_health_changed(new_health)
+
 
 func _ready():
+	emit_signal("enemy_health_changed", starting_health)
 	audioFiles["windup"] = preload("res://Audio/Sound Effects/enemy_windup.wav")
 	audioFiles["windup_side"] = preload("res://Audio/Sound Effects/enemy_windup_side.wav")
 	audioFiles["windup_center"] = preload("res://Audio/Sound Effects/enemy_windup_center.wav")
@@ -23,6 +28,8 @@ func _process(_delta):
 func take_damage(damage):
 	print("Enemy took ", damage, " damage.")
 	play_sound_effect("player_hit")
+	current_health -= damage
+	emit_signal("enemy_health_changed", current_health)
 
 
 func play_sound_effect(sound_effect : String, location : String = "default") -> void:
