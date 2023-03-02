@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var starting_health : int = 4
+var starting_health : int = 3
 var current_health : int = starting_health
 var starting_position : Vector2
 var dodge_distance : int = 400
