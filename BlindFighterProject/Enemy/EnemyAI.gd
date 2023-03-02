@@ -80,5 +80,5 @@ func next_attack():
 
 func _on_StateMachine_attack_finished():
 	if combo == 0:
-		yield(get_tree().create_timer(2), "timeout")
+		yield(get_tree().create_timer(1.5), "timeout")
 	next_attack()
