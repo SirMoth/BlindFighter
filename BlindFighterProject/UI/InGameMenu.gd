@@ -2,6 +2,8 @@ extends Control
 
 
 var audioFiles = {}
+var victory : bool = false
+var defeat : bool = false
 
 
 func _ready():
@@ -11,19 +13,29 @@ func _ready():
 
 
 func _on_Player_player_health_changed(new_health):
-	if (new_health <= 0):
-		yield(get_tree().create_timer(0.18), "timeout")
-		get_tree().paused = true
-		$DefeatLabel.visible = true
-		play_sound_effect("defeat")
+	if (new_health <= 0 and victory == false):
+		lose()
 
 
 func _on_Enemy_enemy_health_changed(new_health):
-	if (new_health <= 0):
-		yield(get_tree().create_timer(0.15), "timeout")
-		get_tree().paused = true
-		$VictoryLabel.visible = true
-		play_sound_effect("victory")
+	if (new_health <= 0 and defeat == false):
+		win()
+
+
+func win() -> void:
+	victory = true
+	yield(get_tree().create_timer(0.15), "timeout")
+	get_tree().paused = true
+	$VictoryLabel.visible = true
+	play_sound_effect("victory")
+
+
+func lose() -> void:
+	defeat = true
+	yield(get_tree().create_timer(0.18), "timeout")
+	get_tree().paused = true
+	$DefeatLabel.visible = true
+	play_sound_effect("defeat")
 
 
 func play_sound_effect(sound_effect : String) -> void:
