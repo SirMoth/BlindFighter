@@ -10,6 +10,18 @@ func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS # Allows user to navigate menu when game is paused
 	audioFiles["victory"] = preload("res://Audio/Sound Effects/victory.wav")
 	audioFiles["defeat"] = preload("res://Audio/Sound Effects/defeat.wav")
+	get_tree().paused = true
+	$GameBegin.visible = true
+
+
+func _physics_process(delta):
+	if $GameBegin.visible == true:
+		if Input.is_action_just_released("ui_accept"):
+			$GameBegin.visible = false
+			get_tree().paused = false
+	if (victory == true or defeat == true):
+		if Input.is_action_just_released("ui_accept"):
+			get_tree().reload_current_scene()
 
 
 func _on_Player_player_health_changed(new_health):
