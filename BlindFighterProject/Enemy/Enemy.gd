@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var starting_health : int = 10
+var starting_health : int = 14
 var current_health : int = starting_health
 var audioFiles = {}
 
@@ -26,7 +26,6 @@ func _process(_delta):
 
 # Placeholder take_damage function
 func take_damage(damage):
-	print("Enemy took ", damage, " damage.")
 	play_sound_effect("player_hit")
 	current_health -= damage
 	emit_signal("enemy_health_changed", current_health)

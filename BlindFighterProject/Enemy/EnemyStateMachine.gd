@@ -9,6 +9,9 @@ var transition_to_windup_right : bool = false
 var transition_to_attack_right : bool = false
 var transition_to_windup_center : bool = false
 var transition_to_attack_center : bool = false
+var transition_to_new_attack_left : bool = false
+var transition_to_new_attack_right : bool = false
+var transition_to_new_attack_center : bool = false
 
 
 #Signal the AI uses to determine attack timings
@@ -24,6 +27,9 @@ func _ready():
 	add_state("windup_center")
 	add_state("attack_center")
 	call_deferred("set_state", states.idle) # Sets Idle as the initial state
+	add_state("new_attack_left")
+	add_state("new_attack_right")
+	add_state("new_attack_center")
 
 
 func _state_logic(delta):
@@ -45,6 +51,18 @@ func _get_transition(delta):
 			if transition_to_windup_center == true:
 				transition_to_windup_center = false
 				return states.windup_center
+				
+			if transition_to_new_attack_left == true:
+				transition_to_new_attack_left = false
+				return states.new_attack_left
+
+			if transition_to_new_attack_right == true:
+				transition_to_new_attack_right = false
+				return states.new_attack_right
+
+			if transition_to_new_attack_center == true:
+				transition_to_new_attack_center = false
+				return states.new_attack_center
 		
 		states.windup_left:
 			if transition_to_attack_left == true:
@@ -72,6 +90,21 @@ func _get_transition(delta):
 				return states.attack_center
 		
 		states.attack_center:
+			if transition_to_idle == true:
+				transition_to_idle = false
+				return states.idle
+		
+		states.new_attack_left:
+			if transition_to_idle == true:
+				transition_to_idle = false
+				return states.idle
+		
+		states.new_attack_right:
+			if transition_to_idle == true:
+				transition_to_idle = false
+				return states.idle
+		
+		states.new_attack_center:
 			if transition_to_idle == true:
 				transition_to_idle = false
 				return states.idle
@@ -119,6 +152,33 @@ func _enter_state(new_state, old_state):
 			$"%HitBox".activate(0.5, 1, 0)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 
+		states.new_attack_left:
+			parent.animation_player.play("new_attack_left")
+			parent.play_sound_effect("windup_side", "left")
+			$"%HitBox".set_location($"%HitBox".Location.LEFT_CENTER)
+			$"%HitBox".activate(0.15, 1, 0.5)
+			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
+			yield(get_tree().create_timer(0.5), "timeout")
+			parent.play_sound_effect("attack2", "left")
+
+		states.new_attack_right:
+			parent.animation_player.play("new_attack_right")
+			parent.play_sound_effect("windup_side", "right")
+			$"%HitBox".set_location($"%HitBox".Location.RIGHT_CENTER)
+			$"%HitBox".activate(0.15, 1, 0.5)
+			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
+			yield(get_tree().create_timer(0.5), "timeout")
+			parent.play_sound_effect("attack2", "right")
+
+		states.new_attack_center:
+			parent.animation_player.play("new_attack_center")
+			parent.play_sound_effect("windup_center", "center")
+			$"%HitBox".set_location($"%HitBox".Location.ALL)
+			$"%HitBox".activate(0.15, 1, 0.5)
+			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
+			yield(get_tree().create_timer(0.5), "timeout")
+			parent.play_sound_effect("attack2", "center")
+
 
 # Function to place one-shot code on exiting a state
 func _exit_state(old_state, new_state):
@@ -157,12 +217,30 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 				transition_to_idle = true
 				emit_signal("attack_finished")
 
+		"new_attack_left":
+			if state == states.new_attack_left:
+				transition_to_idle = true
+				emit_signal("attack_finished")
+
+		"new_attack_right":
+			if state == states.new_attack_right:
+				transition_to_idle = true
+				emit_signal("attack_finished")
+
+		"new_attack_center":
+			if state == states.new_attack_center:
+				transition_to_idle = true
+				emit_signal("attack_finished")
+
 
 func _on_AI_attack_left():
-	transition_to_windup_left = true
+	transition_to_windup_left = true # Old attack animation
+	#transition_to_new_attack_left = true # New attack animation
 
 func _on_AI_attack_right():
-	transition_to_windup_right = true
+	transition_to_windup_right = true # Old attack animation
+	#transition_to_new_attack_right = true # New attack animation
 
 func _on_AI_attack_center():
-	transition_to_windup_center = true
+	transition_to_windup_center = true # Old attack animation
+	#transition_to_new_attack_center = true # New attack animation
