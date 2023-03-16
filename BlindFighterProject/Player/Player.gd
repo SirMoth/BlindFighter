@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var starting_health : int = 3
+var starting_health : int = 5
 var current_health : int = starting_health
 var starting_position : Vector2
 var dodge_distance : int = 400
@@ -13,6 +13,7 @@ signal player_health_changed(new_health)
 
 
 func _ready():
+	connect("player_health_changed", self, "_on_player_health_changed")
 	starting_position = $SpriteContainer.get_position()
 	emit_signal("player_health_changed", starting_health)
 	audioFiles["attack"] = preload("res://Audio/Sound Effects/player_attack.wav")
@@ -59,6 +60,26 @@ func move(location : String = "start") -> void:
 			audio_tween.tween_property($AudioPlayerContainer, "position", Vector2(960, $AudioPlayerContainer.get_position().y), animation_player.current_animation_length)
 		_:
 			print("Error: Incorrect location given for move() function")
+
+
+func _on_player_health_changed(new_health):
+	update_heartbeat_values()
+
+
+func update_heartbeat_values():
+	var percent_health_missing : float = 1 - (current_health / starting_health)
+	print("Percent health missing: ", percent_health_missing)
+	$"%HeartbeatAudioPlayer".volume_db = percent_to_db(percent_health_missing)
+
+func db_to_percent(db) -> float:
+	var percent : float
+	percent = pow(10, (db / 10))
+	return percent
+
+func percent_to_db(percent) -> float:
+	var db : float
+	db = 10 * log(percent)
+	return db
 
 
 func play_sound_effect(sound_effect : String) -> void:
