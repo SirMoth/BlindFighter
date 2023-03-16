@@ -5,6 +5,7 @@ extends StateMachine
 var transition_to_idle : bool = false
 var transition_to_return_left : bool = false
 var transition_to_return_right : bool = false
+var can_cancel_from_attack : bool = false
 
 
 func _ready():
@@ -43,6 +44,16 @@ func _get_transition(delta):
 			if transition_to_idle == true:
 				transition_to_idle = false
 				return states.idle
+			
+			if can_cancel_from_attack == true:
+				if Input.is_action_just_pressed("attack"):
+					return states.attack
+				if Input.is_action_just_pressed("parry"):
+					return states.parry
+				if Input.is_action_just_pressed("dodge_left"):
+					return states.dodge_left
+				if Input.is_action_just_pressed("dodge_right"):
+					return states.dodge_right
 		
 		states.parry:
 			if transition_to_idle == true:
@@ -90,9 +101,16 @@ func _enter_state(new_state, old_state):
 
 		states.attack:
 			parent.animation_player.play("attack")
+			if parent.animation_player.current_animation == "attack":
+				parent.animation_player.stop()
+				parent.animation_player.play("attack")
 			parent.play_sound_effect("attack")
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["center"], $"%HurtBox".color["idle"])
-			$"%HitBox".activate(0.5, 1, 0.08)
+			$"%HitBox".activate(0.25, 1, 0.08)
+			yield(get_tree().create_timer(0.35), "timeout")
+			if state == states.attack:
+				can_cancel_from_attack = true
+				print("Can cancel")
 
 		states.parry:
 			parent.animation_player.play("parry")
@@ -131,7 +149,10 @@ func _enter_state(new_state, old_state):
 
 # Function to place one-shot code on exiting a state
 func _exit_state(old_state, new_state):
-	pass
+	match old_state:
+		states.attack:
+			if can_cancel_from_attack == true:
+				can_cancel_from_attack = false
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
