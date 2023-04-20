@@ -623,7 +623,6 @@ position = Vector2( 960, 540 )
 [node name="HeartbeatAudioPlayer" type="AudioStreamPlayer2D" parent="AudioPlayerContainer"]
 unique_name_in_owner = true
 stream = ExtResource( 25 )
-autoplay = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 22 )
