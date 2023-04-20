@@ -50,23 +50,11 @@ func _on_finished() -> void:
 				set_music("c5")
 			else:
 				set_music(get_music_to_shift_to())
-		"c5":
-				set_music(get_music_to_shift_to())
-		"c6":
-				set_music(get_music_to_shift_to())
-		"c7":
-				set_music(get_music_to_shift_to())
-		"c8":
-				set_music(get_music_to_shift_to())
+		"c5", "c6", "c7", "c8":
+			set_music(get_music_to_shift_to())
 		"c9":
-			set_stream(musicFiles["c10"])
-			play()
-			current_music_file = "c10"
-		"c10":
-			set_stream(musicFiles["c11"])
-			play()
-			current_music_file = "c11"
-		"c11":
+			set_music("c10")
+		"c10", "c11":
 			set_music("c11")
 
 
@@ -86,7 +74,7 @@ func _on_Enemy_enemy_health_changed(new_health) -> void:
 	
 
 func set_damage_to_shift() -> void:
-	damage_to_shift = initial_enemy_health / number_of_shifts
+	damage_to_shift = initial_enemy_health / (number_of_shifts + 1)
 
 
 func get_music_to_shift_to() -> String:
@@ -99,6 +87,5 @@ func get_music_to_shift_to() -> String:
 			return "c7"
 		3:
 			return "c8"
-		4:
+		4, _:
 			return "c9"
-	return "c1"
