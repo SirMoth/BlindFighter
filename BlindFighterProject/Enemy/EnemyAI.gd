@@ -5,6 +5,7 @@ signal attack_left
 signal attack_right
 signal attack_center
 
+var rng = RandomNumberGenerator.new()
 # Variable that increases as the fight goes on, making attack patterns harder.
 var escalation : int = 0
 # Variable to count how many attacks the enemy has made in a row.
@@ -12,6 +13,7 @@ var combo : int = 0
 
 
 func _ready():
+	rng.randomize()
 	yield(get_tree().create_timer(2.5), "timeout")
 	next_attack()
 
@@ -27,7 +29,7 @@ func attack_center():
 	emit_signal("attack_center")
 
 func attack_random():
-	match (randi() % 3):
+	match (rng.randi() % 3):
 		0:
 			emit_signal("attack_left")
 		1:
@@ -38,7 +40,7 @@ func attack_random():
 			print("Random attack error: Out of scope")
 
 func attack_random_side():
-	match (randi() % 2):
+	match (rng.randi() % 2):
 		0:
 			emit_signal("attack_left")
 		1:
