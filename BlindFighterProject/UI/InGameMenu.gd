@@ -11,9 +11,9 @@ func _ready():
 	audioFiles["game_start"] = preload("res://Audio/Sound Effects/game_start.wav")
 	audioFiles["victory"] = preload("res://Audio/Sound Effects/victory.wav")
 	audioFiles["defeat"] = preload("res://Audio/Sound Effects/defeat.wav")
-	get_tree().paused = true
-	$GameBegin.visible = true
-	play_sound_effect("game_start")
+	#get_tree().paused = true
+	#$GameBegin.visible = true
+	#play_sound_effect("game_start")
 
 
 func _physics_process(delta):
