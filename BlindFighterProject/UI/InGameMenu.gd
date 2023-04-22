@@ -23,7 +23,8 @@ func _physics_process(delta):
 			get_tree().paused = false
 	if (victory == true or defeat == true):
 		if Input.is_action_just_released("ui_accept"):
-			get_tree().reload_current_scene()
+			get_tree().change_scene("res://MainMenu/MainMenu.tscn")
+			get_tree().paused = false
 
 
 func _on_Player_player_health_changed(new_health):
