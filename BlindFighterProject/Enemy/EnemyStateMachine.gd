@@ -123,7 +123,7 @@ func _enter_state(new_state, old_state):
 
 		states.attack_left:
 			parent.animation_player.play("attack_left")
-			parent.play_sound_effect("attack2", "left")
+			parent.play_sound_effect("attack", "left")
 			$"%HitBox".set_location($"%HitBox".Location.LEFT)
 			$"%HitBox".activate(0.5, 1, 0)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
@@ -135,7 +135,7 @@ func _enter_state(new_state, old_state):
 
 		states.attack_right:
 			parent.animation_player.play("attack_right")
-			parent.play_sound_effect("attack2", "right")
+			parent.play_sound_effect("attack", "right")
 			$"%HitBox".set_location($"%HitBox".Location.RIGHT)
 			$"%HitBox".activate(0.5, 1, 0)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])

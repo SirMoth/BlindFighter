@@ -5,7 +5,7 @@ var audioFiles = {}
 
 
 func _ready():
-	audioFiles["blind_fighter"] = preload("res://Audio/Sound Effects/game_start.wav")
+	audioFiles["blind_fighter"] = preload("res://Audio/Sound Effects/main_menu.wav")
 	
 	play_sound_effect("blind_fighter")
 
