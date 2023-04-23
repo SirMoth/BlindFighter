@@ -97,7 +97,7 @@ func _enter_state(new_state, old_state):
 	match new_state:
 		states.idle:
 			parent.animation_player.play("idle")
-			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["center"], $"%HurtBox".color["idle"])
+			$"%HurtBoxController".idle()
 
 		states.attack:
 			parent.animation_player.play("attack")
@@ -105,7 +105,7 @@ func _enter_state(new_state, old_state):
 				parent.animation_player.stop()
 				parent.animation_player.play("attack")
 			parent.play_sound_effect("attack")
-			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["center"], $"%HurtBox".color["idle"])
+			$"%HurtBoxController".idle()
 			$"%HitBox".activate(0.25, 1, 0.08)
 			yield(get_tree().create_timer(0.35), "timeout")
 			if state == states.attack:
@@ -115,21 +115,21 @@ func _enter_state(new_state, old_state):
 		states.parry:
 			parent.animation_player.play("parry")
 			parent.play_sound_effect("parry")
-			$"%HurtBox".set_status($"%HurtBox".Condition.PARRY, $"%HurtBox".location["center"], $"%HurtBox".color["parry"])
+			$"%HurtBoxController".parry()
 
 		states.dodge_left:
 			parent.animation_player.play("dodge_left")
 			parent.play_sound_effect("dodge")
 			parent.play_sound_effect("dodge_voice")
 			parent.move("left")
-			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["left"], $"%HurtBox".color["idle"])
+			$"%HurtBoxController".dodge_left()
 
 		states.dodge_right:
 			parent.animation_player.play("dodge_right")
 			parent.play_sound_effect("dodge")
 			parent.play_sound_effect("dodge_voice")
 			parent.move("right")
-			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["right"], $"%HurtBox".color["idle"])
+			$"%HurtBoxController".dodge_right()
 
 		# Returning from the left requeres jumping to the right and vice versa
 		states.return_left:
@@ -137,14 +137,14 @@ func _enter_state(new_state, old_state):
 			parent.play_sound_effect("return")
 			parent.play_sound_effect("return_voice")
 			parent.move("start")
-			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["left"], $"%HurtBox".color["idle"])
+			$"%HurtBoxController".dodge_left()
 
 		states.return_right:
 			parent.animation_player.play("dodge_left")
 			parent.play_sound_effect("return")
 			parent.play_sound_effect("return_voice")
 			parent.move("start")
-			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".location["right"], $"%HurtBox".color["idle"])
+			$"%HurtBoxController".dodge_right()
 
 
 # Function to place one-shot code on exiting a state
