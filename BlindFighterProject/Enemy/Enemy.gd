@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var starting_health : int = 14
+var starting_health : int = 16
 var current_health : int = starting_health
 var audioFiles = {}
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Player/Sprite/ArmLowerR.png" type="Texture" id=1]
 [ext_resource path="res://Player/Sprite/HandR.png" type="Texture" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Player/Animation/attack.tres" type="Animation" id=23]
 [ext_resource path="res://Player/Animation/parry.tres" type="Animation" id=24]
 [ext_resource path="res://Audio/Sound Effects/heartbeat.wav" type="AudioStream" id=25]
+[ext_resource path="res://Player/HurtBoxController.gd" type="Script" id=26]
 [ext_resource path="res://Player/PlayerHurtBox.gd" type="Script" id=29]
 [ext_resource path="res://Player/PlayerHitBox.gd" type="Script" id=30]
 
@@ -415,11 +416,11 @@ tracks/31/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 128, 264 )
-
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 21, 57 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 128, 264 )
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 21 )
@@ -623,19 +624,9 @@ position = Vector2( 960, 540 )
 [node name="HeartbeatAudioPlayer" type="AudioStreamPlayer2D" parent="AudioPlayerContainer"]
 unique_name_in_owner = true
 stream = ExtResource( 25 )
-autoplay = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 22 )
-
-[node name="HurtBox" type="Area2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource( 29 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-self_modulate = Color( 0, 1, 0, 0.705882 )
-position = Vector2( 960, 816 )
-shape = SubResource( 2 )
 
 [node name="HitBox" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -644,5 +635,33 @@ script = ExtResource( 30 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 1024, 432 )
 shape = SubResource( 3 )
+
+[node name="HurtBoxController" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 26 )
+
+[node name="HurtBoxLeft" type="Area2D" parent="HurtBoxController"]
+script = ExtResource( 29 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxController/HurtBoxLeft"]
+self_modulate = Color( 0, 1, 0, 0.705882 )
+position = Vector2( 701, 816 )
+shape = SubResource( 2 )
+
+[node name="HurtBoxCenter" type="Area2D" parent="HurtBoxController"]
+script = ExtResource( 29 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxController/HurtBoxCenter"]
+self_modulate = Color( 0, 1, 0, 0.705882 )
+position = Vector2( 960, 816 )
+shape = SubResource( 2 )
+
+[node name="HurtBoxRight" type="Area2D" parent="HurtBoxController"]
+script = ExtResource( 29 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxController/HurtBoxRight"]
+self_modulate = Color( 0, 1, 0, 0.705882 )
+position = Vector2( 1219, 816 )
+shape = SubResource( 2 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_AnimationPlayer_animation_finished"]

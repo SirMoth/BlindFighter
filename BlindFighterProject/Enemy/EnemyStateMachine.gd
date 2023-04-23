@@ -123,8 +123,8 @@ func _enter_state(new_state, old_state):
 
 		states.attack_left:
 			parent.animation_player.play("attack_left")
-			parent.play_sound_effect("attack2", "left")
-			$"%HitBox".set_location($"%HitBox".Location.LEFT_CENTER)
+			parent.play_sound_effect("attack", "left")
+			$"%HitBox".set_location($"%HitBox".Location.LEFT)
 			$"%HitBox".activate(0.5, 1, 0)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 
@@ -135,8 +135,8 @@ func _enter_state(new_state, old_state):
 
 		states.attack_right:
 			parent.animation_player.play("attack_right")
-			parent.play_sound_effect("attack2", "right")
-			$"%HitBox".set_location($"%HitBox".Location.RIGHT_CENTER)
+			parent.play_sound_effect("attack", "right")
+			$"%HitBox".set_location($"%HitBox".Location.RIGHT)
 			$"%HitBox".activate(0.5, 1, 0)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 
@@ -148,14 +148,14 @@ func _enter_state(new_state, old_state):
 		states.attack_center:
 			parent.animation_player.play("attack_center")
 			parent.play_sound_effect("attack2", "center")
-			$"%HitBox".set_location($"%HitBox".Location.ALL)
+			$"%HitBox".set_location($"%HitBox".Location.CENTER)
 			$"%HitBox".activate(0.5, 1, 0)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 
 		states.new_attack_left:
 			parent.animation_player.play("new_attack_left")
 			parent.play_sound_effect("windup_side", "left")
-			$"%HitBox".set_location($"%HitBox".Location.LEFT_CENTER)
+			$"%HitBox".set_location($"%HitBox".Location.LEFT)
 			$"%HitBox".activate(0.15, 1, 0.5)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 			yield(get_tree().create_timer(0.5), "timeout")
@@ -164,7 +164,7 @@ func _enter_state(new_state, old_state):
 		states.new_attack_right:
 			parent.animation_player.play("new_attack_right")
 			parent.play_sound_effect("windup_side", "right")
-			$"%HitBox".set_location($"%HitBox".Location.RIGHT_CENTER)
+			$"%HitBox".set_location($"%HitBox".Location.RIGHT)
 			$"%HitBox".activate(0.15, 1, 0.5)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 			yield(get_tree().create_timer(0.5), "timeout")
@@ -173,7 +173,7 @@ func _enter_state(new_state, old_state):
 		states.new_attack_center:
 			parent.animation_player.play("new_attack_center")
 			parent.play_sound_effect("windup_center", "center")
-			$"%HitBox".set_location($"%HitBox".Location.ALL)
+			$"%HitBox".set_location($"%HitBox".Location.CENTER)
 			$"%HitBox".activate(0.15, 1, 0.5)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 			yield(get_tree().create_timer(0.5), "timeout")

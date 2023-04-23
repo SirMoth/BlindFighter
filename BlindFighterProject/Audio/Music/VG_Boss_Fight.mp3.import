@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/VG_Boss_Fight.mp3-4b99fb5dc247a5f22d09e869814d3eca.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/VG_Boss_Fight.mp3"
+dest_files=[ "res://.import/VG_Boss_Fight.mp3-4b99fb5dc247a5f22d09e869814d3eca.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var starting_health : int = 5
+var starting_health : int = 6
 var current_health : int = starting_health
 var starting_position : Vector2
 var dodge_distance : int = 400
@@ -62,24 +62,24 @@ func move(location : String = "start") -> void:
 			print("Error: Incorrect location given for move() function")
 
 
-func _on_player_health_changed(new_health):
-	update_heartbeat_values()
-
-
-func update_heartbeat_values():
-	var percent_health_missing : float = 1 - (current_health / starting_health)
-	print("Percent health missing: ", percent_health_missing)
-	$"%HeartbeatAudioPlayer".volume_db = percent_to_db(percent_health_missing)
-
-func db_to_percent(db) -> float:
-	var percent : float
-	percent = pow(10, (db / 10))
-	return percent
-
-func percent_to_db(percent) -> float:
-	var db : float
-	db = 10 * log(percent)
-	return db
+#func _on_player_health_changed(new_health):
+#	update_heartbeat_values()
+#
+#
+#func update_heartbeat_values():
+#	var percent_health_missing : float = 1 - ((float(current_health) - 1) / (float(starting_health) - 1))
+#	print("Percent health missing: ", percent_health_missing)
+#	$"%HeartbeatAudioPlayer".volume_db = percent_to_db(percent_health_missing)
+#
+#func db_to_percent(db) -> float:
+#	var percent : float
+#	percent = pow(10, (db / 10))
+#	return percent
+#
+#func percent_to_db(percent) -> float:
+#	var db : float
+#	db = 10 * log(percent)
+#	return db
 
 
 func play_sound_effect(sound_effect : String) -> void:
