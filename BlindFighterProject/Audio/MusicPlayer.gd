@@ -14,6 +14,7 @@ var current_music_phase : int = 0
 
 
 func _ready() -> void:
+	pause_mode = Node.PAUSE_MODE_PROCESS # Allows music to continue while game is paused
 	connect("finished", self, "_on_finished")
 	musicFiles["c1"] = preload("res://Audio/Music/VGF_C1.wav")   # Intro
 	musicFiles["c2"] = preload("res://Audio/Music/VGF_C2.wav")   # Intro

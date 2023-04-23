@@ -7,25 +7,53 @@ var defeat : bool = false
 
 signal sound_effect_finished
 
+var rng = RandomNumberGenerator.new()
+
 
 func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS # Allows user to navigate menu when game is paused
+	audioFiles["player_intro1"] = preload("res://Audio/Sound Effects/player_intro1.wav")
+	audioFiles["player_intro2"] = preload("res://Audio/Sound Effects/player_intro2.wav")
+	audioFiles["player_intro3"] = preload("res://Audio/Sound Effects/player_intro3.wav")
+	audioFiles["player_intro4"] = preload("res://Audio/Sound Effects/player_intro4.wav")
+	audioFiles["enemy_intro1"] = preload("res://Audio/Sound Effects/enemy_intro1.wav")
+	audioFiles["enemy_intro2"] = preload("res://Audio/Sound Effects/enemy_intro2.wav")
 	audioFiles["game_start"] = preload("res://Audio/Sound Effects/game_start.wav")
 	audioFiles["victory"] = preload("res://Audio/Sound Effects/victory.wav")
 	audioFiles["final_hit"] = preload("res://Audio/Sound Effects/player_hit_final.wav")
 	audioFiles["enemy_death1"] = preload("res://Audio/Sound Effects/enemy_death1.wav")
 	audioFiles["defeat"] = preload("res://Audio/Sound Effects/defeat.wav")
 	audioFiles["final_damaged"] = preload("res://Audio/Sound Effects/player_damaged_final.wav")
-	#get_tree().paused = true
-	#$GameBegin.visible = true
-	#play_sound_effect("game_start")
+	
+	get_tree().paused = true
+	match (rng.randi() % 2):
+		1:
+			play_sound_effect("enemy_intro1")
+		2:
+			play_sound_effect("enemy_intro2")
+	yield(self, "sound_effect_finished")
+	yield(get_tree().create_timer(0.1), "timeout")
+	
+	match (rng.randi() % 4):
+		1:
+			play_sound_effect("player_intro1")
+		2:
+			play_sound_effect("player_intro2")
+		3:
+			play_sound_effect("player_intro3")
+		4:
+			play_sound_effect("player_intro4")
+	yield(self, "sound_effect_finished")
+	yield(get_tree().create_timer(0.15), "timeout")
+	
+	$GameBegin.visible = true
+	play_sound_effect("game_start")
+	yield(self, "sound_effect_finished")
+	$GameBegin.visible = false
+	get_tree().paused = false
 
 
 func _physics_process(delta):
-	if $GameBegin.visible == true:
-		if Input.is_action_just_released("ui_accept"):
-			$GameBegin.visible = false
-			get_tree().paused = false
 	if (victory == true or defeat == true):
 		if Input.is_action_just_released("ui_accept"):
 			get_tree().change_scene("res://MainMenu/MainMenu.tscn")
