@@ -34,7 +34,7 @@ func take_damage(damage):
 func play_sound_effect(sound_effect : String, location : String = "default") -> void:
 	var sound_effect_player = AudioStreamPlayer2D.new()
 	$AudioPlayerContainer.add_child(sound_effect_player)
-	sound_effect_player.volume_db += 6 # Change to a non-static variable
+	sound_effect_player.volume_db += 1 # Change to a non-static variable
 	
 	if location != "default":
 		match location:
