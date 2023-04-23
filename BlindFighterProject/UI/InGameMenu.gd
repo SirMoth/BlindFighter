@@ -18,6 +18,7 @@ func _ready():
 	audioFiles["player_intro4"] = preload("res://Audio/Sound Effects/player_intro4.wav")
 	audioFiles["enemy_intro1"] = preload("res://Audio/Sound Effects/enemy_intro1.wav")
 	audioFiles["enemy_intro2"] = preload("res://Audio/Sound Effects/enemy_intro2.wav")
+	audioFiles["ready"] = preload("res://Audio/Sound Effects/ready.wav")
 	audioFiles["game_start"] = preload("res://Audio/Sound Effects/game_start.wav")
 	audioFiles["victory"] = preload("res://Audio/Sound Effects/victory.wav")
 	audioFiles["final_hit"] = preload("res://Audio/Sound Effects/player_hit_final.wav")
@@ -26,26 +27,30 @@ func _ready():
 	audioFiles["final_damaged"] = preload("res://Audio/Sound Effects/player_damaged_final.wav")
 	
 	get_tree().paused = true
-	match (rng.randi() % 2):
-		1:
-			play_sound_effect("enemy_intro1")
-		2:
-			play_sound_effect("enemy_intro2")
-	yield(self, "sound_effect_finished")
-	yield(get_tree().create_timer(0.1), "timeout")
+#	match (rng.randi() % 2):
+#		1:
+#			play_sound_effect("enemy_intro1")
+#		2:
+#			play_sound_effect("enemy_intro2")
+#	yield(self, "sound_effect_finished")
+#
+#	match (rng.randi() % 4):
+#		1:
+#			play_sound_effect("player_intro1")
+#		2:
+#			play_sound_effect("player_intro2")
+#		3:
+#			play_sound_effect("player_intro3")
+#		4:
+#			play_sound_effect("player_intro4")
+#	yield(self, "sound_effect_finished")
+#	yield(get_tree().create_timer(0.5), "timeout")
 	
-	match (rng.randi() % 4):
-		1:
-			play_sound_effect("player_intro1")
-		2:
-			play_sound_effect("player_intro2")
-		3:
-			play_sound_effect("player_intro3")
-		4:
-			play_sound_effect("player_intro4")
+	$Ready.visible = true
+	play_sound_effect("ready")
 	yield(self, "sound_effect_finished")
-	yield(get_tree().create_timer(0.15), "timeout")
-	
+	yield(get_tree().create_timer(1), "timeout")
+	$Ready.visible = false
 	$GameBegin.visible = true
 	play_sound_effect("game_start")
 	yield(self, "sound_effect_finished")
