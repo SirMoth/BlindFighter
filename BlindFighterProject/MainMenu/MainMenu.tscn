@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://MainMenu/SelecterLeft.shader" type="Shader" id=1]
 [ext_resource path="res://MainMenu/Untitled.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://MainMenu/SelecterRight.shader" type="Shader" id=4]
 [ext_resource path="res://MainMenu/MainMenu.gd" type="Script" id=5]
 [ext_resource path="res://UI/Fonts/M.F. Plexus Italic.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://MainMenu/MainMenuMusicPlayer.gd" type="Script" id=7]
+[ext_resource path="res://Audio/Music/SE_Intro.wav" type="AudioStream" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
@@ -131,3 +133,9 @@ custom_fonts/font = SubResource( 3 )
 text = " <"
 align = 1
 valign = 1
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -9.614
+autoplay = true
+script = ExtResource( 7 )

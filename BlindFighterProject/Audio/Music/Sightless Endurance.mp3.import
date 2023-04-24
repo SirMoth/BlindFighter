@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Sightless Endurance.mp3-ed77cc5088eb504fed58a4ce96cb0377.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Sightless Endurance.mp3"
+dest_files=[ "res://.import/Sightless Endurance.mp3-ed77cc5088eb504fed58a4ce96cb0377.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
