@@ -22,7 +22,7 @@ __meta__ = {
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 
 [node name="MusicPlayer" parent="." instance=ExtResource( 4 )]
-volume_db = -23.328
+volume_db = -17.21
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 anchor_right = 0.0
