@@ -149,7 +149,7 @@ func _enter_state(new_state, old_state):
 			parent.animation_player.play("attack_center")
 			parent.play_sound_effect("attack2", "center")
 			$"%HitBox".set_location($"%HitBox".Location.CENTER)
-			$"%HitBox".activate(0.5, 1, 0)
+			$"%HitBox".activate(0.25, 1, 0.25)
 			$"%HurtBox".set_status($"%HurtBox".Condition.IDLE, $"%HurtBox".color["idle"])
 
 		states.new_attack_left:
