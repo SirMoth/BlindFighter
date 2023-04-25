@@ -73,7 +73,7 @@ func next_attack():
 					attack_center()
 				else:
 					attack_random()
-		yield(get_tree().create_timer(0.3), "timeout")
+		yield(get_tree().create_timer(0.5), "timeout")
 	# Resets the combo, increases escalation, and gives a window to be attacked after full attack pattern.
 	if (combo >= escalation) or (combo >= 5):
 		combo = 0
@@ -83,4 +83,6 @@ func next_attack():
 func _on_StateMachine_attack_finished():
 	if combo == 0:
 		yield(get_tree().create_timer(1.5), "timeout")
+	else:
+		yield(get_tree().create_timer(0.2), "timeout")
 	next_attack()
